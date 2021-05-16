@@ -9,7 +9,7 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title="AkvelonDB",
       default_version='v1',
       description="Test description",
       terms_of_service="https://www.google.com/policies/terms/",
@@ -23,6 +23,8 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('users/', views.UserList.as_view()),
     path('users/<int:pk>/', views.UserDetail.as_view()),
+    path('users/<int:pk>/transactions', views.TransactionViewList.as_view()),
+    path('users/<int:pk>/transactionsbydates', views.SumTransactionViewGroupedByDate.as_view()),
     path('transactions/', views.TransactionList.as_view()),
     path('transactions/<int:pk>/', views.TransactionDetail.as_view()),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

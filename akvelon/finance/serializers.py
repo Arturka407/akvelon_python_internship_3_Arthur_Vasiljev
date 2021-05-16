@@ -9,6 +9,13 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
     class Meta:
         model = Transaction
         fields = ['id', 'user', 'amount', 'date']
+
+
+class SumTransactionByDateSerializer(serializers.Serializer):
+    date = serializers.DateField()
+    sum = serializers.FloatField()
